@@ -1,0 +1,14 @@
+diabetic.zip
+diabetic/
+
+__pycache__
+*.pyc
+
+.terraform/
+terraform.tfvars
+*.tfstate
+*.tfstate.backup
+
+*.zip
+
+.local/
