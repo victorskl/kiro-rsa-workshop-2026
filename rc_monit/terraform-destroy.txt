@@ -1,0 +1,356 @@
+module.tags.terraform_data.tag_validation: Refreshing state... [id=af2626dd-3074-a590-2d8a-6ee59b3d5696]
+module.notifications.data.archive_file.lambda_zip: Reading...
+module.spot_tracker.data.archive_file.lambda_zip: Reading...
+module.cost_harvester.data.archive_file.lambda_zip: Reading...
+module.notifications.data.archive_file.lambda_zip: Read complete after 0s [id=ac7173d3166a776a810069b503e7e9b4a5c1cda2]
+module.cost_harvester.data.archive_file.lambda_zip: Read complete after 0s [id=886b1623bff5c8e0b9bbba8132a35abea6e54928]
+module.spot_tracker.data.archive_file.lambda_zip: Read complete after 0s [id=fe384508a1348a421eac890039bad4029fcc4248]
+module.spot_tracker.data.aws_iam_policy_document.assume_role: Reading...
+module.oam.data.aws_caller_identity.monitoring: Reading...
+module.spot_tracker.data.aws_iam_policy_document.lambda_policy: Reading...
+module.spot_tracker.data.aws_iam_policy_document.lambda_policy: Read complete after 0s [id=3651555803]
+module.spot_tracker.data.aws_iam_policy_document.assume_role: Read complete after 0s [id=2690255455]
+module.cost_harvester.data.aws_iam_policy_document.lambda_policy: Reading...
+module.notifications.data.aws_iam_policy_document.assume_role: Reading...
+module.cost_harvester.data.aws_iam_policy_document.assume_role: Reading...
+module.oam.data.aws_caller_identity.monitoring: Read complete after 0s [id=174384277945]
+module.cost_harvester.data.aws_iam_policy_document.lambda_policy: Read complete after 0s [id=2965666764]
+module.notifications.data.aws_iam_policy_document.assume_role: Read complete after 0s [id=2690255455]
+module.cost_harvester.data.aws_iam_policy_document.assume_role: Read complete after 0s [id=2690255455]
+module.spot_tracker.aws_iam_role.lambda: Refreshing state... [id=research-spot-tracker-role]
+module.cost_harvester.aws_iam_role.lambda: Refreshing state... [id=research-cost-harvester-role]
+module.notifications.aws_iam_role.lambda: Refreshing state... [id=research-slack-notifier-role]
+module.cost_harvester.aws_iam_role_policy.lambda: Refreshing state... [id=research-cost-harvester-role:research-cost-harvester-policy]
+module.spot_tracker.aws_iam_role_policy.lambda: Refreshing state... [id=research-spot-tracker-role:research-spot-tracker-policy]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # module.cost_harvester.aws_iam_role.lambda will be destroyed
+  - resource "aws_iam_role" "lambda" {
+      - arn                   = "arn:aws:iam::174384277945:role/research-cost-harvester-role" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-10-15T05:55:59Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "research-cost-harvester-role" -> null
+      - managed_policy_arns   = [] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "research-cost-harvester-role" -> null
+      - path                  = "/" -> null
+      - tags                  = {
+          - "CostCenter"  = "CC-4821"
+          - "Environment" = "prod"
+          - "Pipeline"    = "platform"
+          - "Project"     = "research-platform"
+          - "Researcher"  = "platform-team"
+          - "Team"        = "computational-bio"
+        } -> null
+      - tags_all              = {
+          - "CostCenter"  = "CC-4821"
+          - "Environment" = "prod"
+          - "Pipeline"    = "platform"
+          - "Project"     = "research-platform"
+          - "Researcher"  = "platform-team"
+          - "Team"        = "computational-bio"
+        } -> null
+      - unique_id             = "AROASRGQ45G4QBQ2PQIVR" -> null
+        # (3 unchanged attributes hidden)
+
+      - inline_policy {
+          - name   = "research-cost-harvester-policy" -> null
+          - policy = jsonencode(
+                {
+                  - Statement = [
+                      - {
+                          - Action   = "ce:GetCostAndUsage"
+                          - Effect   = "Allow"
+                          - Resource = "*"
+                        },
+                      - {
+                          - Action    = "cloudwatch:PutMetricData"
+                          - Condition = {
+                              - StringEquals = {
+                                  - "cloudwatch:namespace" = "ResearchComputing/Costs"
+                                }
+                            }
+                          - Effect    = "Allow"
+                          - Resource  = "*"
+                        },
+                      - {
+                          - Action   = [
+                              - "logs:PutLogEvents",
+                              - "logs:CreateLogStream",
+                              - "logs:CreateLogGroup",
+                            ]
+                          - Effect   = "Allow"
+                          - Resource = "arn:aws:logs:*:*:log-group:/aws/lambda/research-cost-harvester:*"
+                        },
+                    ]
+                  - Version   = "2012-10-17"
+                }
+            ) -> null
+        }
+    }
+
+  # module.cost_harvester.aws_iam_role_policy.lambda will be destroyed
+  - resource "aws_iam_role_policy" "lambda" {
+      - id          = "research-cost-harvester-role:research-cost-harvester-policy" -> null
+      - name        = "research-cost-harvester-policy" -> null
+      - policy      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "ce:GetCostAndUsage"
+                      - Effect   = "Allow"
+                      - Resource = "*"
+                    },
+                  - {
+                      - Action    = "cloudwatch:PutMetricData"
+                      - Condition = {
+                          - StringEquals = {
+                              - "cloudwatch:namespace" = "ResearchComputing/Costs"
+                            }
+                        }
+                      - Effect    = "Allow"
+                      - Resource  = "*"
+                    },
+                  - {
+                      - Action   = [
+                          - "logs:PutLogEvents",
+                          - "logs:CreateLogStream",
+                          - "logs:CreateLogGroup",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:logs:*:*:log-group:/aws/lambda/research-cost-harvester:*"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - role        = "research-cost-harvester-role" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.notifications.aws_iam_role.lambda will be destroyed
+  - resource "aws_iam_role" "lambda" {
+      - arn                   = "arn:aws:iam::174384277945:role/research-slack-notifier-role" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-10-15T05:55:59Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "research-slack-notifier-role" -> null
+      - managed_policy_arns   = [] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "research-slack-notifier-role" -> null
+      - path                  = "/" -> null
+      - tags                  = {
+          - "CostCenter"  = "CC-4821"
+          - "Environment" = "prod"
+          - "Pipeline"    = "platform"
+          - "Project"     = "research-platform"
+          - "Researcher"  = "platform-team"
+          - "Team"        = "computational-bio"
+        } -> null
+      - tags_all              = {
+          - "CostCenter"  = "CC-4821"
+          - "Environment" = "prod"
+          - "Pipeline"    = "platform"
+          - "Project"     = "research-platform"
+          - "Researcher"  = "platform-team"
+          - "Team"        = "computational-bio"
+        } -> null
+      - unique_id             = "AROASRGQ45G4RF5WUHLEH" -> null
+        # (3 unchanged attributes hidden)
+    }
+
+  # module.spot_tracker.aws_iam_role.lambda will be destroyed
+  - resource "aws_iam_role" "lambda" {
+      - arn                   = "arn:aws:iam::174384277945:role/research-spot-tracker-role" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-10-15T05:55:59Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "research-spot-tracker-role" -> null
+      - managed_policy_arns   = [] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "research-spot-tracker-role" -> null
+      - path                  = "/" -> null
+      - tags                  = {
+          - "CostCenter"  = "CC-4821"
+          - "Environment" = "prod"
+          - "Pipeline"    = "platform"
+          - "Project"     = "research-platform"
+          - "Researcher"  = "platform-team"
+          - "Team"        = "computational-bio"
+        } -> null
+      - tags_all              = {
+          - "CostCenter"  = "CC-4821"
+          - "Environment" = "prod"
+          - "Pipeline"    = "platform"
+          - "Project"     = "research-platform"
+          - "Researcher"  = "platform-team"
+          - "Team"        = "computational-bio"
+        } -> null
+      - unique_id             = "AROASRGQ45G4YFHJYYNYN" -> null
+        # (3 unchanged attributes hidden)
+
+      - inline_policy {
+          - name   = "research-spot-tracker-policy" -> null
+          - policy = jsonencode(
+                {
+                  - Statement = [
+                      - {
+                          - Action   = "ec2:DescribeInstances"
+                          - Effect   = "Allow"
+                          - Resource = "*"
+                        },
+                      - {
+                          - Action    = "cloudwatch:PutMetricData"
+                          - Condition = {
+                              - StringEquals = {
+                                  - "cloudwatch:namespace" = "ResearchComputing/Spot"
+                                }
+                            }
+                          - Effect    = "Allow"
+                          - Resource  = "*"
+                        },
+                      - {
+                          - Action   = [
+                              - "logs:PutLogEvents",
+                              - "logs:CreateLogStream",
+                              - "logs:CreateLogGroup",
+                            ]
+                          - Effect   = "Allow"
+                          - Resource = "arn:aws:logs:*:*:log-group:/aws/lambda/research-spot-tracker:*"
+                        },
+                    ]
+                  - Version   = "2012-10-17"
+                }
+            ) -> null
+        }
+    }
+
+  # module.spot_tracker.aws_iam_role_policy.lambda will be destroyed
+  - resource "aws_iam_role_policy" "lambda" {
+      - id          = "research-spot-tracker-role:research-spot-tracker-policy" -> null
+      - name        = "research-spot-tracker-policy" -> null
+      - policy      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = "ec2:DescribeInstances"
+                      - Effect   = "Allow"
+                      - Resource = "*"
+                    },
+                  - {
+                      - Action    = "cloudwatch:PutMetricData"
+                      - Condition = {
+                          - StringEquals = {
+                              - "cloudwatch:namespace" = "ResearchComputing/Spot"
+                            }
+                        }
+                      - Effect    = "Allow"
+                      - Resource  = "*"
+                    },
+                  - {
+                      - Action   = [
+                          - "logs:PutLogEvents",
+                          - "logs:CreateLogStream",
+                          - "logs:CreateLogGroup",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:logs:*:*:log-group:/aws/lambda/research-spot-tracker:*"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - role        = "research-spot-tracker-role" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.tags.terraform_data.tag_validation will be destroyed
+  - resource "terraform_data" "tag_validation" {
+      - id = "af2626dd-3074-a590-2d8a-6ee59b3d5696" -> null
+    }
+
+Plan: 0 to add, 0 to change, 6 to destroy.
+
+Changes to Outputs:
+  - activated_cost_tag_keys    = [
+      - "CostCenter",
+      - "Environment",
+      - "Pipeline",
+      - "Project",
+      - "Researcher",
+      - "Team",
+    ] -> null
+  - cost_harvester_lambda_name = "research-cost-harvester" -> null
+  - cost_spike_alarm_names     = [
+      - "research-cost-spike-climate-model",
+      - "research-cost-spike-genome-seq",
+      - "research-cost-spike-protein-fold",
+    ] -> null
+  - dashboard_name             = "ResearchComputing" -> null
+  - dashboard_url              = "https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#dashboards:name=ResearchComputing" -> null
+  - slack_notifier_lambda_name = "research-slack-notifier" -> null
+  - spot_burst_alarm_names     = [
+      - "research-spot-burst-climate-model",
+      - "research-spot-burst-genome-seq",
+      - "research-spot-burst-protein-fold",
+    ] -> null
+  - spot_tracker_lambda_name   = "research-spot-tracker" -> null
+module.tags.terraform_data.tag_validation: Destroying... [id=af2626dd-3074-a590-2d8a-6ee59b3d5696]
+module.tags.terraform_data.tag_validation: Destruction complete after 0s
+module.spot_tracker.aws_iam_role_policy.lambda: Destroying... [id=research-spot-tracker-role:research-spot-tracker-policy]
+module.cost_harvester.aws_iam_role_policy.lambda: Destroying... [id=research-cost-harvester-role:research-cost-harvester-policy]
+module.notifications.aws_iam_role.lambda: Destroying... [id=research-slack-notifier-role]
+module.cost_harvester.aws_iam_role_policy.lambda: Destruction complete after 0s
+module.cost_harvester.aws_iam_role.lambda: Destroying... [id=research-cost-harvester-role]
+module.spot_tracker.aws_iam_role_policy.lambda: Destruction complete after 0s
+module.spot_tracker.aws_iam_role.lambda: Destroying... [id=research-spot-tracker-role]
+module.notifications.aws_iam_role.lambda: Destruction complete after 0s
+module.cost_harvester.aws_iam_role.lambda: Destruction complete after 0s
+module.spot_tracker.aws_iam_role.lambda: Destruction complete after 0s
+
+Destroy complete! Resources: 6 destroyed.

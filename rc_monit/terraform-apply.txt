@@ -1,0 +1,1759 @@
+module.cost_harvester.data.archive_file.lambda_zip: Reading...
+module.spot_tracker.data.archive_file.lambda_zip: Reading...
+module.notifications.data.archive_file.lambda_zip: Reading...
+module.spot_tracker.data.archive_file.lambda_zip: Read complete after 0s [id=fe384508a1348a421eac890039bad4029fcc4248]
+module.cost_harvester.data.archive_file.lambda_zip: Read complete after 0s [id=886b1623bff5c8e0b9bbba8132a35abea6e54928]
+module.notifications.data.archive_file.lambda_zip: Read complete after 0s [id=ac7173d3166a776a810069b503e7e9b4a5c1cda2]
+module.cost_harvester.data.aws_iam_policy_document.assume_role: Reading...
+module.spot_tracker.data.aws_iam_policy_document.assume_role: Reading...
+module.oam.data.aws_caller_identity.monitoring: Reading...
+module.cost_harvester.data.aws_iam_policy_document.lambda_policy: Reading...
+module.spot_tracker.data.aws_iam_policy_document.lambda_policy: Reading...
+module.cost_harvester.data.aws_iam_policy_document.assume_role: Read complete after 0s [id=2690255455]
+module.spot_tracker.data.aws_iam_policy_document.assume_role: Read complete after 0s [id=2690255455]
+module.cost_harvester.data.aws_iam_policy_document.lambda_policy: Read complete after 0s [id=2965666764]
+module.spot_tracker.data.aws_iam_policy_document.lambda_policy: Read complete after 0s [id=3651555803]
+module.oam.data.aws_caller_identity.monitoring: Read complete after 0s [id=174384277945]
+module.notifications.data.aws_iam_policy_document.assume_role: Reading...
+module.notifications.data.aws_iam_policy_document.assume_role: Read complete after 0s [id=2690255455]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # module.alarms.aws_cloudwatch_metric_alarm.cost_spike["climate-model"] will be created
+  + resource "aws_cloudwatch_metric_alarm" "cost_spike" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "Daily spend for project climate-model exceeded ${var.cost_alarm_threshold_usd} USD"
+      + alarm_name                            = "research-cost-spike-climate-model"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanThreshold"
+      + dimensions                            = {
+          + "Project" = "climate-model"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 1
+      + id                                    = (known after apply)
+      + metric_name                           = "DailySpend"
+      + namespace                             = "ResearchComputing/Costs"
+      + ok_actions                            = (known after apply)
+      + period                                = 86400
+      + statistic                             = "Sum"
+      + tags                                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + threshold                             = 500
+      + treat_missing_data                    = "notBreaching"
+    }
+
+  # module.alarms.aws_cloudwatch_metric_alarm.cost_spike["genome-seq"] will be created
+  + resource "aws_cloudwatch_metric_alarm" "cost_spike" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "Daily spend for project genome-seq exceeded ${var.cost_alarm_threshold_usd} USD"
+      + alarm_name                            = "research-cost-spike-genome-seq"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanThreshold"
+      + dimensions                            = {
+          + "Project" = "genome-seq"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 1
+      + id                                    = (known after apply)
+      + metric_name                           = "DailySpend"
+      + namespace                             = "ResearchComputing/Costs"
+      + ok_actions                            = (known after apply)
+      + period                                = 86400
+      + statistic                             = "Sum"
+      + tags                                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + threshold                             = 500
+      + treat_missing_data                    = "notBreaching"
+    }
+
+  # module.alarms.aws_cloudwatch_metric_alarm.cost_spike["protein-fold"] will be created
+  + resource "aws_cloudwatch_metric_alarm" "cost_spike" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "Daily spend for project protein-fold exceeded ${var.cost_alarm_threshold_usd} USD"
+      + alarm_name                            = "research-cost-spike-protein-fold"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanThreshold"
+      + dimensions                            = {
+          + "Project" = "protein-fold"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 1
+      + id                                    = (known after apply)
+      + metric_name                           = "DailySpend"
+      + namespace                             = "ResearchComputing/Costs"
+      + ok_actions                            = (known after apply)
+      + period                                = 86400
+      + statistic                             = "Sum"
+      + tags                                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + threshold                             = 500
+      + treat_missing_data                    = "notBreaching"
+    }
+
+  # module.alarms.aws_cloudwatch_metric_alarm.ec2_idle will be created
+  + resource "aws_cloudwatch_metric_alarm" "ec2_idle" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "One or more EC2 instances have CPU < 10% for 2+ hours — possible idle waste"
+      + alarm_name                            = "research-ec2-idle"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "LessThanThreshold"
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 24
+      + id                                    = (known after apply)
+      + metric_name                           = "CPUUtilization"
+      + namespace                             = "AWS/EC2"
+      + ok_actions                            = (known after apply)
+      + period                                = 300
+      + statistic                             = "Average"
+      + tags                                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + threshold                             = 10
+      + treat_missing_data                    = "notBreaching"
+    }
+
+  # module.alarms.aws_cloudwatch_metric_alarm.spot_burst["climate-model"] will be created
+  + resource "aws_cloudwatch_metric_alarm" "spot_burst" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "Project climate-model exceeded 5 spot interruptions in 1 hour"
+      + alarm_name                            = "research-spot-burst-climate-model"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanThreshold"
+      + dimensions                            = {
+          + "Project" = "climate-model"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 1
+      + id                                    = (known after apply)
+      + metric_name                           = "SpotInterruption"
+      + namespace                             = "ResearchComputing/Spot"
+      + ok_actions                            = (known after apply)
+      + period                                = 3600
+      + statistic                             = "Sum"
+      + tags                                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + threshold                             = 5
+      + treat_missing_data                    = "notBreaching"
+    }
+
+  # module.alarms.aws_cloudwatch_metric_alarm.spot_burst["genome-seq"] will be created
+  + resource "aws_cloudwatch_metric_alarm" "spot_burst" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "Project genome-seq exceeded 5 spot interruptions in 1 hour"
+      + alarm_name                            = "research-spot-burst-genome-seq"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanThreshold"
+      + dimensions                            = {
+          + "Project" = "genome-seq"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 1
+      + id                                    = (known after apply)
+      + metric_name                           = "SpotInterruption"
+      + namespace                             = "ResearchComputing/Spot"
+      + ok_actions                            = (known after apply)
+      + period                                = 3600
+      + statistic                             = "Sum"
+      + tags                                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + threshold                             = 5
+      + treat_missing_data                    = "notBreaching"
+    }
+
+  # module.alarms.aws_cloudwatch_metric_alarm.spot_burst["protein-fold"] will be created
+  + resource "aws_cloudwatch_metric_alarm" "spot_burst" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "Project protein-fold exceeded 5 spot interruptions in 1 hour"
+      + alarm_name                            = "research-spot-burst-protein-fold"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanThreshold"
+      + dimensions                            = {
+          + "Project" = "protein-fold"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 1
+      + id                                    = (known after apply)
+      + metric_name                           = "SpotInterruption"
+      + namespace                             = "ResearchComputing/Spot"
+      + ok_actions                            = (known after apply)
+      + period                                = 3600
+      + statistic                             = "Sum"
+      + tags                                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + threshold                             = 5
+      + treat_missing_data                    = "notBreaching"
+    }
+
+  # module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["CostCenter"] will be created
+  + resource "aws_ce_cost_allocation_tag" "research_tags" {
+      + id      = (known after apply)
+      + status  = "Active"
+      + tag_key = "CostCenter"
+      + type    = (known after apply)
+    }
+
+  # module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Environment"] will be created
+  + resource "aws_ce_cost_allocation_tag" "research_tags" {
+      + id      = (known after apply)
+      + status  = "Active"
+      + tag_key = "Environment"
+      + type    = (known after apply)
+    }
+
+  # module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Pipeline"] will be created
+  + resource "aws_ce_cost_allocation_tag" "research_tags" {
+      + id      = (known after apply)
+      + status  = "Active"
+      + tag_key = "Pipeline"
+      + type    = (known after apply)
+    }
+
+  # module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Project"] will be created
+  + resource "aws_ce_cost_allocation_tag" "research_tags" {
+      + id      = (known after apply)
+      + status  = "Active"
+      + tag_key = "Project"
+      + type    = (known after apply)
+    }
+
+  # module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Researcher"] will be created
+  + resource "aws_ce_cost_allocation_tag" "research_tags" {
+      + id      = (known after apply)
+      + status  = "Active"
+      + tag_key = "Researcher"
+      + type    = (known after apply)
+    }
+
+  # module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Team"] will be created
+  + resource "aws_ce_cost_allocation_tag" "research_tags" {
+      + id      = (known after apply)
+      + status  = "Active"
+      + tag_key = "Team"
+      + type    = (known after apply)
+    }
+
+  # module.cost_harvester.aws_cloudwatch_event_rule.schedule will be created
+  + resource "aws_cloudwatch_event_rule" "schedule" {
+      + arn                 = (known after apply)
+      + description         = "Trigger cost harvester Lambda every 6 hours"
+      + event_bus_name      = "default"
+      + force_destroy       = false
+      + id                  = (known after apply)
+      + name                = "research-cost-harvester-schedule"
+      + name_prefix         = (known after apply)
+      + schedule_expression = "rate(6 hours)"
+      + tags                = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all            = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+    }
+
+  # module.cost_harvester.aws_cloudwatch_event_target.lambda will be created
+  + resource "aws_cloudwatch_event_target" "lambda" {
+      + arn            = (known after apply)
+      + event_bus_name = "default"
+      + force_destroy  = false
+      + id             = (known after apply)
+      + rule           = "research-cost-harvester-schedule"
+      + target_id      = "cost-harvester-lambda"
+    }
+
+  # module.cost_harvester.aws_cloudwatch_log_group.lambda will be created
+  + resource "aws_cloudwatch_log_group" "lambda" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + log_group_class   = (known after apply)
+      + name              = "/aws/lambda/research-cost-harvester"
+      + name_prefix       = (known after apply)
+      + retention_in_days = 30
+      + skip_destroy      = false
+      + tags              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all          = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+    }
+
+  # module.cost_harvester.aws_iam_role.lambda will be created
+  + resource "aws_iam_role" "lambda" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "research-cost-harvester-role"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # module.cost_harvester.aws_iam_role_policy.lambda will be created
+  + resource "aws_iam_role_policy" "lambda" {
+      + id          = (known after apply)
+      + name        = "research-cost-harvester-policy"
+      + name_prefix = (known after apply)
+      + policy      = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action   = "ce:GetCostAndUsage"
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action    = "cloudwatch:PutMetricData"
+                      + Condition = {
+                          + StringEquals = {
+                              + "cloudwatch:namespace" = "ResearchComputing/Costs"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "logs:PutLogEvents",
+                          + "logs:CreateLogStream",
+                          + "logs:CreateLogGroup",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "arn:aws:logs:*:*:log-group:/aws/lambda/research-cost-harvester:*"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + role        = (known after apply)
+    }
+
+  # module.cost_harvester.aws_lambda_function.cost_harvester will be created
+  + resource "aws_lambda_function" "cost_harvester" {
+      + architectures                  = (known after apply)
+      + arn                            = (known after apply)
+      + code_sha256                    = (known after apply)
+      + filename                       = "modules/cost_harvester/lambda/cost_harvester.zip"
+      + function_name                  = "research-cost-harvester"
+      + handler                        = "handler.handler"
+      + id                             = (known after apply)
+      + invoke_arn                     = (known after apply)
+      + last_modified                  = (known after apply)
+      + memory_size                    = 256
+      + package_type                   = "Zip"
+      + publish                        = false
+      + qualified_arn                  = (known after apply)
+      + qualified_invoke_arn           = (known after apply)
+      + reserved_concurrent_executions = -1
+      + role                           = (known after apply)
+      + runtime                        = "python3.12"
+      + signing_job_arn                = (known after apply)
+      + signing_profile_version_arn    = (known after apply)
+      + skip_destroy                   = false
+      + source_code_hash               = "Ww8t3W5CM5mwCRUyUz4A9jwIRkq9GOsGPYtjEyPqMWs="
+      + source_code_size               = (known after apply)
+      + tags                           = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                       = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + timeout                        = 300
+      + version                        = (known after apply)
+
+      + environment {
+          + variables = {
+              + "PROJECTS" = "genome-seq,protein-fold,climate-model"
+            }
+        }
+
+      + ephemeral_storage (known after apply)
+
+      + logging_config (known after apply)
+
+      + tracing_config (known after apply)
+    }
+
+  # module.cost_harvester.aws_lambda_permission.allow_eventbridge will be created
+  + resource "aws_lambda_permission" "allow_eventbridge" {
+      + action              = "lambda:InvokeFunction"
+      + function_name       = "research-cost-harvester"
+      + id                  = (known after apply)
+      + principal           = "events.amazonaws.com"
+      + source_arn          = (known after apply)
+      + statement_id        = "AllowExecutionFromEventBridge"
+      + statement_id_prefix = (known after apply)
+    }
+
+  # module.dashboard.aws_cloudwatch_dashboard.research will be created
+  + resource "aws_cloudwatch_dashboard" "research" {
+      + dashboard_arn  = (known after apply)
+      + dashboard_body = jsonencode(
+            {
+              + widgets = [
+                  + {
+                      + height     = 1
+                      + properties = {
+                          + markdown = <<-EOT
+                                # 💰 Cost Attribution — by Project & Researcher
+                                _Custom metrics from `ResearchComputing/Costs` namespace · refreshed every 6 hours_
+                            EOT
+                        }
+                      + type       = "text"
+                      + width      = 24
+                      + x          = 0
+                      + y          = 0
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + legend  = {
+                              + position = "bottom"
+                            }
+                          + metrics = [
+                              + [
+                                  + "ResearchComputing/Costs",
+                                  + "DailySpend",
+                                  + "Project",
+                                  + "genome-seq",
+                                ],
+                              + [
+                                  + "ResearchComputing/Costs",
+                                  + "DailySpend",
+                                  + "Project",
+                                  + "protein-fold",
+                                ],
+                              + [
+                                  + "ResearchComputing/Costs",
+                                  + "DailySpend",
+                                  + "Project",
+                                  + "climate-model",
+                                ],
+                            ]
+                          + period  = 86400
+                          + stacked = false
+                          + stat    = "Sum"
+                          + title   = "Daily Spend by Project (USD, last 30 days)"
+                          + view    = "timeSeries"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "USD"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 0
+                      + y          = 1
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "ResearchComputing/Costs",
+                                  + "DailySpend",
+                                  + "Project",
+                                  + "genome-seq",
+                                ],
+                              + [
+                                  + "ResearchComputing/Costs",
+                                  + "DailySpend",
+                                  + "Project",
+                                  + "protein-fold",
+                                ],
+                              + [
+                                  + "ResearchComputing/Costs",
+                                  + "DailySpend",
+                                  + "Project",
+                                  + "climate-model",
+                                ],
+                            ]
+                          + period  = 86400
+                          + stat    = "Sum"
+                          + title   = "Daily Spend by Researcher (USD, last 7 days)"
+                          + view    = "bar"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "USD"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 12
+                      + y          = 1
+                    },
+                  + {
+                      + height     = 1
+                      + properties = {
+                          + markdown = <<-EOT
+                                # ⚡ Spot Instance Interruptions
+                                _Custom metrics from `ResearchComputing/Spot` namespace · populated by EventBridge → Lambda_
+                            EOT
+                        }
+                      + type       = "text"
+                      + width      = 24
+                      + x          = 0
+                      + y          = 7
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "ResearchComputing/Spot",
+                                  + "SpotInterruption",
+                                  + "Project",
+                                  + "genome-seq",
+                                ],
+                              + [
+                                  + "ResearchComputing/Spot",
+                                  + "SpotInterruption",
+                                  + "Project",
+                                  + "protein-fold",
+                                ],
+                              + [
+                                  + "ResearchComputing/Spot",
+                                  + "SpotInterruption",
+                                  + "Project",
+                                  + "climate-model",
+                                ],
+                            ]
+                          + period  = 3600
+                          + stat    = "Sum"
+                          + title   = "Spot Interruptions by Project (last 24h)"
+                          + view    = "bar"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "Count"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 0
+                      + y          = 8
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "ResearchComputing/Spot",
+                                  + "SpotInterruption",
+                                  + "Project",
+                                  + "genome-seq",
+                                ],
+                              + [
+                                  + "ResearchComputing/Spot",
+                                  + "SpotInterruption",
+                                  + "Project",
+                                  + "protein-fold",
+                                ],
+                              + [
+                                  + "ResearchComputing/Spot",
+                                  + "SpotInterruption",
+                                  + "Project",
+                                  + "climate-model",
+                                ],
+                            ]
+                          + period  = 3600
+                          + stat    = "Sum"
+                          + title   = "Spot Interruption Rate — 7 Day Trend"
+                          + view    = "timeSeries"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "Count"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 12
+                      + y          = 8
+                    },
+                  + {
+                      + height     = 1
+                      + properties = {
+                          + markdown = <<-EOT
+                                # 🖥️ EC2 Compute Utilization
+                                _Native metrics from `AWS/EC2` namespace · aggregated across instances_
+                            EOT
+                        }
+                      + type       = "text"
+                      + width      = 24
+                      + x          = 0
+                      + y          = 14
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + annotations = {
+                              + horizontal = [
+                                  + {
+                                      + color = "#ff7f0e"
+                                      + label = "Idle threshold"
+                                      + value = 10
+                                    },
+                                ]
+                            }
+                          + metrics     = [
+                              + [
+                                  + {
+                                      + expression = "SEARCH('{AWS/EC2} MetricName=\"CPUUtilization\"', 'Average', 300)"
+                                      + id         = "cpu_genome_seq"
+                                      + label      = "genome-seq"
+                                      + visible    = true
+                                    },
+                                ],
+                              + [
+                                  + {
+                                      + expression = "SEARCH('{AWS/EC2} MetricName=\"CPUUtilization\"', 'Average', 300)"
+                                      + id         = "cpu_protein_fold"
+                                      + label      = "protein-fold"
+                                      + visible    = true
+                                    },
+                                ],
+                              + [
+                                  + {
+                                      + expression = "SEARCH('{AWS/EC2} MetricName=\"CPUUtilization\"', 'Average', 300)"
+                                      + id         = "cpu_climate_model"
+                                      + label      = "climate-model"
+                                      + visible    = true
+                                    },
+                                ],
+                            ]
+                          + period      = 300
+                          + stat        = "Average"
+                          + title       = "Average CPU Utilization by Project (%)"
+                          + view        = "timeSeries"
+                          + yAxis       = {
+                              + left = {
+                                  + label = "%"
+                                  + max   = 100
+                                  + min   = 0
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 0
+                      + y          = 15
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "AWS/EC2",
+                                  + "NetworkIn",
+                                  + {
+                                      + id    = "net_in"
+                                      + label = "Network In"
+                                      + stat  = "Sum"
+                                    },
+                                ],
+                              + [
+                                  + "AWS/EC2",
+                                  + "NetworkOut",
+                                  + {
+                                      + id    = "net_out"
+                                      + label = "Network Out"
+                                      + stat  = "Sum"
+                                    },
+                                ],
+                            ]
+                          + period  = 300
+                          + stat    = "Sum"
+                          + title   = "Network I/O (bytes/min)"
+                          + view    = "timeSeries"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "Bytes"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 12
+                      + y          = 15
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "AWS/EC2",
+                                  + "DiskReadOps",
+                                  + {
+                                      + label = "Disk Read Ops"
+                                      + stat  = "Sum"
+                                    },
+                                ],
+                              + [
+                                  + "AWS/EC2",
+                                  + "DiskWriteOps",
+                                  + {
+                                      + label = "Disk Write Ops"
+                                      + stat  = "Sum"
+                                    },
+                                ],
+                            ]
+                          + period  = 300
+                          + stat    = "Sum"
+                          + title   = "EC2 Disk Read/Write (ops/min)"
+                          + view    = "timeSeries"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "Ops"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 0
+                      + y          = 21
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "AWS/EC2",
+                                  + "CPUUtilization",
+                                  + {
+                                      + id      = "m1"
+                                      + visible = false
+                                    },
+                                ],
+                              + [
+                                  + {
+                                      + expression = "METRICS_SAMPLE_COUNT(m1)"
+                                      + id         = "instance_count"
+                                      + label      = "Running Instances"
+                                    },
+                                ],
+                            ]
+                          + period  = 300
+                          + stat    = "Average"
+                          + title   = "EC2 Instance Count (running)"
+                          + view    = "singleValue"
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 12
+                      + y          = 21
+                    },
+                  + {
+                      + height     = 1
+                      + properties = {
+                          + markdown = <<-EOT
+                                # 🗄️ Storage — S3 & EFS
+                                _Native metrics from `AWS/S3` and `AWS/EFS` namespaces_
+                            EOT
+                        }
+                      + type       = "text"
+                      + width      = 24
+                      + x          = 0
+                      + y          = 27
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "AWS/S3",
+                                  + "BucketSizeBytes",
+                                  + "BucketName",
+                                  + "my-org-genome-seq-data",
+                                  + "StorageType",
+                                  + "StandardStorage",
+                                ],
+                              + [
+                                  + "AWS/S3",
+                                  + "BucketSizeBytes",
+                                  + "BucketName",
+                                  + "my-org-protein-fold-data",
+                                  + "StorageType",
+                                  + "StandardStorage",
+                                ],
+                            ]
+                          + period  = 86400
+                          + stat    = "Average"
+                          + title   = "S3 Bucket Size (bytes)"
+                          + view    = "timeSeries"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "Bytes"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 0
+                      + y          = 28
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "AWS/S3",
+                                  + "NumberOfObjects",
+                                  + "BucketName",
+                                  + "my-org-genome-seq-data",
+                                  + "StorageType",
+                                  + "AllStorageTypes",
+                                ],
+                              + [
+                                  + "AWS/S3",
+                                  + "NumberOfObjects",
+                                  + "BucketName",
+                                  + "my-org-protein-fold-data",
+                                  + "StorageType",
+                                  + "AllStorageTypes",
+                                ],
+                            ]
+                          + period  = 86400
+                          + stat    = "Average"
+                          + title   = "S3 Object Count"
+                          + view    = "timeSeries"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "Objects"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 12
+                      + y          = 28
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "AWS/EFS",
+                                  + "PermittedThroughput",
+                                  + "FileSystemId",
+                                  + "fs-0abc1234",
+                                  + {
+                                      + label = "fs-0abc1234 Permitted"
+                                    },
+                                ],
+                              + [
+                                  + "AWS/EFS",
+                                  + "MeteredIOBytes",
+                                  + "FileSystemId",
+                                  + "fs-0abc1234",
+                                  + {
+                                      + label  = "fs-0abc1234 Actual"
+                                      + period = 300
+                                      + stat   = "Sum"
+                                    },
+                                ],
+                              + [
+                                  + "AWS/EFS",
+                                  + "PermittedThroughput",
+                                  + "FileSystemId",
+                                  + "fs-0def5678",
+                                  + {
+                                      + label = "fs-0def5678 Permitted"
+                                    },
+                                ],
+                              + [
+                                  + "AWS/EFS",
+                                  + "MeteredIOBytes",
+                                  + "FileSystemId",
+                                  + "fs-0def5678",
+                                  + {
+                                      + label  = "fs-0def5678 Actual"
+                                      + period = 300
+                                      + stat   = "Sum"
+                                    },
+                                ],
+                            ]
+                          + period  = 300
+                          + stat    = "Average"
+                          + title   = "EFS Permitted vs Actual Throughput (MiB/s)"
+                          + view    = "timeSeries"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "MiB/s"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 0
+                      + y          = 34
+                    },
+                  + {
+                      + height     = 6
+                      + properties = {
+                          + metrics = [
+                              + [
+                                  + "AWS/EFS",
+                                  + "ClientConnections",
+                                  + "FileSystemId",
+                                  + "fs-0abc1234",
+                                ],
+                              + [
+                                  + "AWS/EFS",
+                                  + "ClientConnections",
+                                  + "FileSystemId",
+                                  + "fs-0def5678",
+                                ],
+                            ]
+                          + period  = 300
+                          + stat    = "Average"
+                          + title   = "EFS Client Connections"
+                          + view    = "timeSeries"
+                          + yAxis   = {
+                              + left = {
+                                  + label     = "Connections"
+                                  + showUnits = false
+                                }
+                            }
+                        }
+                      + type       = "metric"
+                      + width      = 12
+                      + x          = 12
+                      + y          = 34
+                    },
+                ]
+            }
+        )
+      + dashboard_name = "ResearchComputing"
+      + id             = (known after apply)
+    }
+
+  # module.notifications.data.aws_iam_policy_document.lambda_policy will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "lambda_policy" {
+      + id            = (known after apply)
+      + json          = (known after apply)
+      + minified_json = (known after apply)
+
+      + statement {
+          + actions   = [
+              + "secretsmanager:GetSecretValue",
+            ]
+          + effect    = "Allow"
+          + resources = [
+              + (known after apply),
+            ]
+        }
+      + statement {
+          + actions   = [
+              + "logs:CreateLogGroup",
+              + "logs:CreateLogStream",
+              + "logs:PutLogEvents",
+            ]
+          + effect    = "Allow"
+          + resources = [
+              + "arn:aws:logs:*:*:log-group:/aws/lambda/research-slack-notifier:*",
+            ]
+        }
+    }
+
+  # module.notifications.aws_cloudwatch_log_group.lambda will be created
+  + resource "aws_cloudwatch_log_group" "lambda" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + log_group_class   = (known after apply)
+      + name              = "/aws/lambda/research-slack-notifier"
+      + name_prefix       = (known after apply)
+      + retention_in_days = 30
+      + skip_destroy      = false
+      + tags              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all          = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+    }
+
+  # module.notifications.aws_iam_role.lambda will be created
+  + resource "aws_iam_role" "lambda" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "research-slack-notifier-role"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # module.notifications.aws_iam_role_policy.lambda will be created
+  + resource "aws_iam_role_policy" "lambda" {
+      + id          = (known after apply)
+      + name        = "research-slack-notifier-policy"
+      + name_prefix = (known after apply)
+      + policy      = (known after apply)
+      + role        = (known after apply)
+    }
+
+  # module.notifications.aws_lambda_function.slack_notifier will be created
+  + resource "aws_lambda_function" "slack_notifier" {
+      + architectures                  = (known after apply)
+      + arn                            = (known after apply)
+      + code_sha256                    = (known after apply)
+      + filename                       = "modules/notifications/lambda/slack_notifier.zip"
+      + function_name                  = "research-slack-notifier"
+      + handler                        = "handler.handler"
+      + id                             = (known after apply)
+      + invoke_arn                     = (known after apply)
+      + last_modified                  = (known after apply)
+      + memory_size                    = 128
+      + package_type                   = "Zip"
+      + publish                        = false
+      + qualified_arn                  = (known after apply)
+      + qualified_invoke_arn           = (known after apply)
+      + reserved_concurrent_executions = -1
+      + role                           = (known after apply)
+      + runtime                        = "python3.12"
+      + signing_job_arn                = (known after apply)
+      + signing_profile_version_arn    = (known after apply)
+      + skip_destroy                   = false
+      + source_code_hash               = "IemOYYUYogdRur82IHB2YMge2CRdKj263CDgghzqN4E="
+      + source_code_size               = (known after apply)
+      + tags                           = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                       = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + timeout                        = 30
+      + version                        = (known after apply)
+
+      + environment {
+          + variables = {
+              + "DASHBOARD_URL"     = "https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#dashboards:name=ResearchComputing"
+              + "SLACK_SECRET_NAME" = "research-monitoring/slack-webhook"
+            }
+        }
+
+      + ephemeral_storage (known after apply)
+
+      + logging_config (known after apply)
+
+      + tracing_config (known after apply)
+    }
+
+  # module.notifications.aws_lambda_permission.allow_sns will be created
+  + resource "aws_lambda_permission" "allow_sns" {
+      + action              = "lambda:InvokeFunction"
+      + function_name       = "research-slack-notifier"
+      + id                  = (known after apply)
+      + principal           = "sns.amazonaws.com"
+      + source_arn          = (known after apply)
+      + statement_id        = "AllowExecutionFromSNS"
+      + statement_id_prefix = (known after apply)
+    }
+
+  # module.notifications.aws_secretsmanager_secret.slack_webhook will be created
+  + resource "aws_secretsmanager_secret" "slack_webhook" {
+      + arn                            = (known after apply)
+      + description                    = "Slack incoming webhook URL for research computing alarm notifications"
+      + force_overwrite_replica_secret = false
+      + id                             = (known after apply)
+      + name                           = "research-monitoring/slack-webhook"
+      + name_prefix                    = (known after apply)
+      + policy                         = (known after apply)
+      + recovery_window_in_days        = 7
+      + tags                           = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                       = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+
+      + replica (known after apply)
+    }
+
+  # module.notifications.aws_secretsmanager_secret_version.slack_webhook_placeholder will be created
+  + resource "aws_secretsmanager_secret_version" "slack_webhook_placeholder" {
+      + arn                  = (known after apply)
+      + has_secret_string_wo = (known after apply)
+      + id                   = (known after apply)
+      + secret_id            = (known after apply)
+      + secret_string        = (sensitive value)
+      + secret_string_wo     = (write-only attribute)
+      + version_id           = (known after apply)
+      + version_stages       = (known after apply)
+    }
+
+  # module.notifications.aws_sns_topic.alarms will be created
+  + resource "aws_sns_topic" "alarms" {
+      + arn                         = (known after apply)
+      + beginning_archive_time      = (known after apply)
+      + content_based_deduplication = false
+      + fifo_throughput_scope       = (known after apply)
+      + fifo_topic                  = false
+      + id                          = (known after apply)
+      + name                        = "research-computing-alarms"
+      + name_prefix                 = (known after apply)
+      + owner                       = (known after apply)
+      + policy                      = (known after apply)
+      + signature_version           = (known after apply)
+      + tags                        = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                    = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tracing_config              = (known after apply)
+    }
+
+  # module.notifications.aws_sns_topic_subscription.email["finance@example.com"] will be created
+  + resource "aws_sns_topic_subscription" "email" {
+      + arn                             = (known after apply)
+      + confirmation_timeout_in_minutes = 1
+      + confirmation_was_authenticated  = (known after apply)
+      + endpoint                        = "finance@example.com"
+      + endpoint_auto_confirms          = false
+      + filter_policy_scope             = (known after apply)
+      + id                              = (known after apply)
+      + owner_id                        = (known after apply)
+      + pending_confirmation            = (known after apply)
+      + protocol                        = "email"
+      + raw_message_delivery            = false
+      + topic_arn                       = (known after apply)
+    }
+
+  # module.notifications.aws_sns_topic_subscription.email["ops-team@example.com"] will be created
+  + resource "aws_sns_topic_subscription" "email" {
+      + arn                             = (known after apply)
+      + confirmation_timeout_in_minutes = 1
+      + confirmation_was_authenticated  = (known after apply)
+      + endpoint                        = "ops-team@example.com"
+      + endpoint_auto_confirms          = false
+      + filter_policy_scope             = (known after apply)
+      + id                              = (known after apply)
+      + owner_id                        = (known after apply)
+      + pending_confirmation            = (known after apply)
+      + protocol                        = "email"
+      + raw_message_delivery            = false
+      + topic_arn                       = (known after apply)
+    }
+
+  # module.notifications.aws_sns_topic_subscription.lambda will be created
+  + resource "aws_sns_topic_subscription" "lambda" {
+      + arn                             = (known after apply)
+      + confirmation_timeout_in_minutes = 1
+      + confirmation_was_authenticated  = (known after apply)
+      + endpoint                        = (known after apply)
+      + endpoint_auto_confirms          = false
+      + filter_policy_scope             = (known after apply)
+      + id                              = (known after apply)
+      + owner_id                        = (known after apply)
+      + pending_confirmation            = (known after apply)
+      + protocol                        = "lambda"
+      + raw_message_delivery            = false
+      + topic_arn                       = (known after apply)
+    }
+
+  # module.oam.aws_oam_sink.monitoring will be created
+  + resource "aws_oam_sink" "monitoring" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + name     = "research-computing-monitoring"
+      + sink_id  = (known after apply)
+      + tags     = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+    }
+
+  # module.oam.aws_oam_sink_policy.monitoring will be created
+  + resource "aws_oam_sink_policy" "monitoring" {
+      + arn             = (known after apply)
+      + id              = (known after apply)
+      + policy          = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = [
+                          + "oam:CreateLink",
+                          + "oam:UpdateLink",
+                        ]
+                      + Condition = {
+                          + StringEquals = {
+                              + "oam:ResourceTypes" = [
+                                  + "AWS::CloudWatch::Metric",
+                                  + "AWS::Logs::LogGroup",
+                                ]
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + AWS = [
+                              + "arn:aws:iam::111122223333:root",
+                              + "arn:aws:iam::444455556666:root",
+                              + "arn:aws:iam::777788889999:root",
+                            ]
+                        }
+                      + Resource  = "*"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + sink_id         = (known after apply)
+      + sink_identifier = (known after apply)
+    }
+
+  # module.spot_tracker.aws_cloudwatch_event_rule.spot_interruption will be created
+  + resource "aws_cloudwatch_event_rule" "spot_interruption" {
+      + arn            = (known after apply)
+      + description    = "Capture EC2 Spot Instance Interruption Warning events"
+      + event_bus_name = "default"
+      + event_pattern  = jsonencode(
+            {
+              + detail-type = [
+                  + "EC2 Spot Instance Interruption Warning",
+                ]
+              + source      = [
+                  + "aws.ec2",
+                ]
+            }
+        )
+      + force_destroy  = false
+      + id             = (known after apply)
+      + name           = "research-spot-tracker-rule"
+      + name_prefix    = (known after apply)
+      + tags           = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all       = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+    }
+
+  # module.spot_tracker.aws_cloudwatch_event_target.lambda will be created
+  + resource "aws_cloudwatch_event_target" "lambda" {
+      + arn            = (known after apply)
+      + event_bus_name = "default"
+      + force_destroy  = false
+      + id             = (known after apply)
+      + rule           = "research-spot-tracker-rule"
+      + target_id      = "spot-tracker-lambda"
+    }
+
+  # module.spot_tracker.aws_cloudwatch_log_group.lambda will be created
+  + resource "aws_cloudwatch_log_group" "lambda" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + log_group_class   = (known after apply)
+      + name              = "/aws/lambda/research-spot-tracker"
+      + name_prefix       = (known after apply)
+      + retention_in_days = 30
+      + skip_destroy      = false
+      + tags              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all          = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+    }
+
+  # module.spot_tracker.aws_iam_role.lambda will be created
+  + resource "aws_iam_role" "lambda" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "lambda.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "research-spot-tracker-role"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags                  = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all              = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # module.spot_tracker.aws_iam_role_policy.lambda will be created
+  + resource "aws_iam_role_policy" "lambda" {
+      + id          = (known after apply)
+      + name        = "research-spot-tracker-policy"
+      + name_prefix = (known after apply)
+      + policy      = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action   = "ec2:DescribeInstances"
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                    },
+                  + {
+                      + Action    = "cloudwatch:PutMetricData"
+                      + Condition = {
+                          + StringEquals = {
+                              + "cloudwatch:namespace" = "ResearchComputing/Spot"
+                            }
+                        }
+                      + Effect    = "Allow"
+                      + Resource  = "*"
+                    },
+                  + {
+                      + Action   = [
+                          + "logs:PutLogEvents",
+                          + "logs:CreateLogStream",
+                          + "logs:CreateLogGroup",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "arn:aws:logs:*:*:log-group:/aws/lambda/research-spot-tracker:*"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + role        = (known after apply)
+    }
+
+  # module.spot_tracker.aws_lambda_function.spot_tracker will be created
+  + resource "aws_lambda_function" "spot_tracker" {
+      + architectures                  = (known after apply)
+      + arn                            = (known after apply)
+      + code_sha256                    = (known after apply)
+      + filename                       = "modules/spot_tracker/lambda/spot_tracker.zip"
+      + function_name                  = "research-spot-tracker"
+      + handler                        = "handler.handler"
+      + id                             = (known after apply)
+      + invoke_arn                     = (known after apply)
+      + last_modified                  = (known after apply)
+      + memory_size                    = 128
+      + package_type                   = "Zip"
+      + publish                        = false
+      + qualified_arn                  = (known after apply)
+      + qualified_invoke_arn           = (known after apply)
+      + reserved_concurrent_executions = -1
+      + role                           = (known after apply)
+      + runtime                        = "python3.12"
+      + signing_job_arn                = (known after apply)
+      + signing_profile_version_arn    = (known after apply)
+      + skip_destroy                   = false
+      + source_code_hash               = "LbOd91E966lSrhvjpKwQdptQsLz48CpWm6cjOFvHMgo="
+      + source_code_size               = (known after apply)
+      + tags                           = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + tags_all                       = {
+          + "CostCenter"  = "CC-4821"
+          + "Environment" = "prod"
+          + "Pipeline"    = "platform"
+          + "Project"     = "research-platform"
+          + "Researcher"  = "platform-team"
+          + "Team"        = "computational-bio"
+        }
+      + timeout                        = 60
+      + version                        = (known after apply)
+
+      + ephemeral_storage (known after apply)
+
+      + logging_config (known after apply)
+
+      + tracing_config (known after apply)
+    }
+
+  # module.spot_tracker.aws_lambda_permission.allow_eventbridge will be created
+  + resource "aws_lambda_permission" "allow_eventbridge" {
+      + action              = "lambda:InvokeFunction"
+      + function_name       = "research-spot-tracker"
+      + id                  = (known after apply)
+      + principal           = "events.amazonaws.com"
+      + source_arn          = (known after apply)
+      + statement_id        = "AllowExecutionFromEventBridge"
+      + statement_id_prefix = (known after apply)
+    }
+
+  # module.tags.terraform_data.tag_validation will be created
+  + resource "terraform_data" "tag_validation" {
+      + id = (known after apply)
+    }
+
+Plan: 42 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + activated_cost_tag_keys    = [
+      + "CostCenter",
+      + "Environment",
+      + "Pipeline",
+      + "Project",
+      + "Researcher",
+      + "Team",
+    ]
+  + cost_harvester_lambda_name = "research-cost-harvester"
+  + cost_spike_alarm_names     = [
+      + "research-cost-spike-climate-model",
+      + "research-cost-spike-genome-seq",
+      + "research-cost-spike-protein-fold",
+    ]
+  + dashboard_name             = "ResearchComputing"
+  + dashboard_url              = "https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#dashboards:name=ResearchComputing"
+  + oam_sink_arn               = (known after apply)
+  + slack_notifier_lambda_name = "research-slack-notifier"
+  + slack_webhook_secret_arn   = (known after apply)
+  + sns_topic_arn              = (known after apply)
+  + spot_burst_alarm_names     = [
+      + "research-spot-burst-climate-model",
+      + "research-spot-burst-genome-seq",
+      + "research-spot-burst-protein-fold",
+    ]
+  + spot_tracker_lambda_name   = "research-spot-tracker"
+module.tags.terraform_data.tag_validation: Creating...
+module.tags.terraform_data.tag_validation: Creation complete after 0s [id=af2626dd-3074-a590-2d8a-6ee59b3d5696]
+module.spot_tracker.aws_iam_role.lambda: Creating...
+module.notifications.aws_iam_role.lambda: Creating...
+module.spot_tracker.aws_cloudwatch_event_rule.spot_interruption: Creating...
+module.cost_harvester.aws_cloudwatch_event_rule.schedule: Creating...
+module.notifications.aws_sns_topic.alarms: Creating...
+module.dashboard.aws_cloudwatch_dashboard.research: Creating...
+module.cost_harvester.aws_iam_role.lambda: Creating...
+module.cost_harvester.aws_cloudwatch_log_group.lambda: Creating...
+module.notifications.aws_secretsmanager_secret.slack_webhook: Creating...
+module.spot_tracker.aws_cloudwatch_log_group.lambda: Creating...
+module.notifications.aws_cloudwatch_log_group.lambda: Creating...
+module.oam.aws_oam_sink.monitoring: Creating...
+module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["CostCenter"]: Creating...
+module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Environment"]: Creating...
+module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Team"]: Creating...
+module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Pipeline"]: Creating...
+module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Project"]: Creating...
+module.cost_allocation_tags.aws_ce_cost_allocation_tag.research_tags["Researcher"]: Creating...
+module.notifications.aws_iam_role.lambda: Creation complete after 0s [id=research-slack-notifier-role]
+module.cost_harvester.aws_iam_role.lambda: Creation complete after 0s [id=research-cost-harvester-role]
+module.spot_tracker.aws_iam_role.lambda: Creation complete after 0s [id=research-spot-tracker-role]
+module.cost_harvester.aws_iam_role_policy.lambda: Creating...
+module.spot_tracker.aws_iam_role_policy.lambda: Creating...
+module.cost_harvester.aws_iam_role_policy.lambda: Creation complete after 0s [id=research-cost-harvester-role:research-cost-harvester-policy]
+module.spot_tracker.aws_iam_role_policy.lambda: Creation complete after 0s [id=research-spot-tracker-role:research-spot-tracker-policy]

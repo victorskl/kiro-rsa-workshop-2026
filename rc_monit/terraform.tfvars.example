@@ -1,0 +1,63 @@
+# ---------------------------------------------------------------------------
+# terraform.tfvars.example
+#
+# Copy to terraform.tfvars and fill in your values.
+# Never commit terraform.tfvars to version control — it may contain
+# sensitive ARNs or account IDs.
+# ---------------------------------------------------------------------------
+
+aws_region = "us-east-1"
+
+# Role ARNs — leave empty if running as the target account directly.
+monitoring_account_role_arn = "arn:aws:iam::111122223333:role/TerraformMonitoringRole"
+management_account_role_arn = "arn:aws:iam::000000000000:role/TerraformManagementRole"
+
+# Member account IDs whose metrics are shared via CloudWatch OAM.
+source_account_ids = [
+  "111122223333",  # monitoring account (include if self-monitoring is needed)
+  "444455556666",  # genomics project account
+  "777788889999",  # proteomics project account
+]
+
+# Default tags applied to all shared-infrastructure resources.
+default_project    = "research-platform"
+default_researcher = "platform-team"
+default_team       = "computational-bio"
+environment        = "prod"
+default_pipeline   = "platform"
+cost_center        = "CC-4821"
+
+# Active research projects — drives dashboard widgets and per-project alarms.
+research_projects = [
+  "genome-seq",
+  "protein-fold",
+  "climate-model",
+]
+
+# Alarm thresholds.
+cost_alarm_threshold_usd          = 500   # USD per project per day
+cpu_idle_threshold_percent        = 10    # below this → idle alarm
+spot_interruption_alarm_threshold = 5     # interruptions per hour
+
+# Secrets Manager secret name for the Slack incoming webhook URL.
+slack_webhook_secret_name = "research-monitoring/slack-webhook"
+
+# Optional: email addresses to also receive alarm notifications.
+alarm_email_addresses = [
+  "ops-team@example.com",
+  "finance@example.com",
+]
+
+# CloudWatch Dashboard name.
+dashboard_name = "ResearchComputing"
+
+# Storage resources to include in the dashboard.
+efs_filesystem_ids = [
+  "fs-0abc1234",
+  "fs-0def5678",
+]
+
+s3_research_bucket_names = [
+  "my-org-genome-seq-data",
+  "my-org-protein-fold-data",
+]
