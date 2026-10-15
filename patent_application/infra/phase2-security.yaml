@@ -1,0 +1,149 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Phase 2 — Security infrastructure for the Patent Classifier application.
+  Provisions: Bedrock logging IAM role, Lambda Custom Resource IAM role,
+  and CloudWatch Log Groups (application and Bedrock invocation logs).
+  Security enhancements per SECURITY_RISKS.md (RISK-04, RISK-08).
+  Note: KMS key and SSM parameter require additional IAM permissions
+  (kms:CreateKey, ssm:PutParameter) not available in this environment.
+  The system prompt falls back to local prompt_config.txt (see doc.py).
+
+Resources:
+
+  # ---------------------------------------------------------------------------
+  # Bedrock logging role (RISK-04)
+  #
+  # Assumed by the Bedrock service to write model invocation logs to
+  # CloudWatch Logs.  The trust policy uses aws:SourceAccount + aws:SourceArn
+  # conditions to prevent confused-deputy attacks.
+  # ---------------------------------------------------------------------------
+  BedrockLoggingRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: patent-classifier-bedrock-logging-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: bedrock.amazonaws.com
+            Action: sts:AssumeRole
+            Condition:
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+              ArnLike:
+                aws:SourceArn: !Sub "arn:aws:bedrock:us-east-1:${AWS::AccountId}:*"
+      Policies:
+        - PolicyName: BedrockCwlDeliveryPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              # Allow Bedrock service to write invocation log entries
+              - Sid: AllowCwlDelivery
+                Effect: Allow
+                Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/patent-classifier/bedrock-invocations:*"
+
+  # ---------------------------------------------------------------------------
+  # Lambda execution role for the Bedrock logging Custom Resource (RISK-04)
+  # ---------------------------------------------------------------------------
+  BedrockLoggingLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: patent-classifier-bedrock-logging-lambda-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: BedrockLoggingConfigPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Sid: AllowBedrockLoggingConfig
+                Effect: Allow
+                Action:
+                  - bedrock:PutModelInvocationLoggingConfiguration
+                  - bedrock:GetModelInvocationLoggingConfiguration
+                Resource: "*"
+              - Sid: AllowLambdaLogs
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/patent-classifier-bedrock-logging-*"
+              - Sid: AllowPassBedrockLoggingRole
+                Effect: Allow
+                Action: iam:PassRole
+                Resource: !GetAtt BedrockLoggingRole.Arn
+
+  # ---------------------------------------------------------------------------
+  # CloudWatch Log Group — Application logs (RISK-04, RISK-06)
+  #
+  # Receives structured logs from doc.py. 90-day retention balances audit
+  # requirements against storage cost.
+  # Note: KMS encryption requires kms:CreateKey which is not available in
+  # this environment. Encryption can be added once a CMK is provisioned.
+  # ---------------------------------------------------------------------------
+  AppLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /patent-classifier/application
+      RetentionInDays: 90
+
+  # ---------------------------------------------------------------------------
+  # CloudWatch Log Group — Bedrock model invocation logs (RISK-04)
+  #
+  # Receives per-invocation metadata from Amazon Bedrock (timestamps, token
+  # counts, latency, model ID, caller identity). Full prompt/completion text
+  # logging is disabled (textDataDeliveryEnabled: false) — only metadata is
+  # captured. 365-day retention for compliance audit trail.
+  # ---------------------------------------------------------------------------
+  BedrockLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /patent-classifier/bedrock-invocations
+      RetentionInDays: 365
+
+Outputs:
+  BedrockLoggingRoleArn:
+    Description: ARN of the Bedrock invocation logging role
+    Value: !GetAtt BedrockLoggingRole.Arn
+    Export:
+      Name: patent-classifier-bedrock-logging-role-arn
+
+  BedrockLoggingLambdaRoleArn:
+    Description: ARN of the Lambda role for the Bedrock logging custom resource
+    Value: !GetAtt BedrockLoggingLambdaRole.Arn
+    Export:
+      Name: patent-classifier-bedrock-logging-lambda-role-arn
+
+  AppLogGroupArn:
+    Description: ARN of the application CloudWatch Log Group
+    Value: !GetAtt AppLogGroup.Arn
+    Export:
+      Name: patent-classifier-app-log-group-arn
+
+  AppLogGroupName:
+    Description: Name of the application CloudWatch Log Group
+    Value: !Ref AppLogGroup
+    Export:
+      Name: patent-classifier-app-log-group-name
+
+  BedrockLogGroupArn:
+    Description: ARN of the Bedrock invocation CloudWatch Log Group
+    Value: !GetAtt BedrockLogGroup.Arn
+    Export:
+      Name: patent-classifier-bedrock-log-group-arn
+
+  BedrockLogGroupName:
+    Description: Name of the Bedrock invocation CloudWatch Log Group
+    Value: !Ref BedrockLogGroup
+    Export:
+      Name: patent-classifier-bedrock-log-group-name

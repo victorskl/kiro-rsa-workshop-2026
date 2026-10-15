@@ -1,0 +1,127 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Phase 1 - IAM roles for the Patent Classifier application.
+  Deploys the least-privilege runtime role (Bedrock invoke, CloudWatch Logs
+  write) and the ECR access role (image pull) used by App Runner in later
+  phases. Security enhancements per SECURITY_RISKS.md (RISK-04, RISK-07).
+  Imports: patent-classifier-app-log-group-arn (from patent-classifier-security).
+  Note: SSM and KMS policies are documented in SECURITY_RISKS.md but require
+  kms:CreateKey / ssm:PutParameter permissions not available in this environment.
+
+Resources:
+
+  # ---------------------------------------------------------------------------
+  # Runtime role — assumed by the running App Runner container instance.
+  # ---------------------------------------------------------------------------
+  AppRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: patent-classifier-app-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: tasks.apprunner.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: BedrockInvokePolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              # ----------------------------------------------------------------
+              # Bedrock: Statement 1 — invoke the US geo cross-region profile.
+              # Source: https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-haiku-4-5.html
+              # ----------------------------------------------------------------
+              - Sid: AllowBedrockInferenceProfile
+                Effect: Allow
+                Action:
+                  - bedrock:InvokeModel
+                  - bedrock:InvokeModelWithResponseStream
+                Resource:
+                  - !Sub "arn:aws:bedrock:us-east-1:${AWS::AccountId}:inference-profile/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+              # ----------------------------------------------------------------
+              # Bedrock: Statement 2 — foundation model ARNs for cross-region
+              # routing targets, conditioned on the inference profile ARN.
+              # Source: https://docs.aws.amazon.com/bedrock/latest/userguide/global-cross-region-inference.html
+              # ----------------------------------------------------------------
+              - Sid: AllowBedrockFoundationModelAccess
+                Effect: Allow
+                Action:
+                  - bedrock:InvokeModel
+                  - bedrock:InvokeModelWithResponseStream
+                Resource:
+                  - "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-haiku-4-5-20251001-v1:0"
+                  - "arn:aws:bedrock:us-west-2::foundation-model/anthropic.claude-haiku-4-5-20251001-v1:0"
+                Condition:
+                  ArnLike:
+                    bedrock:InferenceProfileArn:
+                      - !Sub "arn:aws:bedrock:us-east-1:${AWS::AccountId}:inference-profile/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+
+        - PolicyName: SsmPromptReadPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              # ----------------------------------------------------------------
+              # SSM Parameter Store: read the system prompt (RISK-08).
+              # The SSM parameter is created outside CloudFormation in this
+              # environment (ssm:PutParameter not available to the deploy role).
+              # The policy is included so the app can read the parameter once
+              # it is provisioned. Falls back to local prompt_config.txt.
+              # ----------------------------------------------------------------
+              - Sid: AllowSsmGetSystemPrompt
+                Effect: Allow
+                Action:
+                  - ssm:GetParameter
+                Resource:
+                  - !Sub "arn:aws:ssm:us-east-1:${AWS::AccountId}:parameter/patent-classifier/system-prompt"
+
+        - PolicyName: CloudWatchLogsWritePolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              # ----------------------------------------------------------------
+              # CloudWatch Logs: write structured application logs (RISK-04, RISK-06).
+              # Scoped to the application log group from the phase2 stack.
+              # ----------------------------------------------------------------
+              - Sid: AllowCwlWrite
+                Effect: Allow
+                Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  - logs:DescribeLogStreams
+                Resource:
+                  - !Sub
+                    - "${LogGroupArn}:*"
+                    - LogGroupArn: !ImportValue patent-classifier-app-log-group-arn
+
+  # ---------------------------------------------------------------------------
+  # ECR access role — assumed by App Runner at build/deploy time to pull the
+  # container image from ECR.
+  # ---------------------------------------------------------------------------
+  EcrAccessRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: patent-classifier-ecr-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: build.apprunner.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+
+Outputs:
+  AppRoleArn:
+    Description: ARN of the App Runner instance (runtime) role
+    Value: !GetAtt AppRole.Arn
+    Export:
+      Name: patent-classifier-app-role-arn
+
+  EcrAccessRoleArn:
+    Description: ARN of the App Runner access (ECR pull) role
+    Value: !GetAtt EcrAccessRole.Arn
+    Export:
+      Name: patent-classifier-ecr-role-arn

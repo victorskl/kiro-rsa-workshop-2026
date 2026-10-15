@@ -1,0 +1,5 @@
+# Pinned to exact versions installed in this environment.
+# Run `pip-audit -r requirements.txt` in CI to catch known CVEs.
+# To upgrade: pin the new version, run pip-audit, then update this file.
+streamlit==1.50.0
+boto3==1.40.31
